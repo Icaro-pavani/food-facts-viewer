@@ -2,10 +2,12 @@ import { db } from "../config/database.js";
 import importsRepository from "../repositories/importsRepository.js";
 
 async function gatherApiInfo() {
-  const databaseConnection = isConnected();
+  const databaseConnection = await isConnected();
 
-  const lastImport = await importsRepository.getLastFileUpdate();
-  const CRONTime = lastImport.importDate;
+  const lastImport = databaseConnection
+    ? await importsRepository.getLastFileUpdate()
+    : null;
+  const CRONTime = lastImport?.importDate;
   const serverUptime = process.uptime();
   const memoryUsage = process.memoryUsage().heapTotal / 1024 / 1024;
 

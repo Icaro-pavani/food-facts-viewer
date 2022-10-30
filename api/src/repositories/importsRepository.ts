@@ -8,7 +8,7 @@ export interface Import {
 }
 
 async function getLastFileUpdate() {
-  return await db
+  return db
     .collection<Import>("imports")
     .findOne({ fileName: "products_09.json" });
 }
