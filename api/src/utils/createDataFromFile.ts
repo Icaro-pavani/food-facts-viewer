@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 
 export default async function createDataFromFile(fileName: string) {
   try {
-    await connectDb("food-test");
+    await connectDb("food-facts");
   } catch (error) {
     console.log(error);
   }
