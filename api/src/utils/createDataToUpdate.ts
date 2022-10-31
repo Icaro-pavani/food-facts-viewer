@@ -3,15 +3,13 @@ import { createInterface } from "readline";
 import { db } from "../config/database.js";
 import dayjs from "dayjs";
 
-export default async function createDataFromFile(fileName: string) {
+export default async function createDataToUpdate(fileName: string) {
   const readStream = createReadStream(fileName);
   const lineReader = createInterface({ input: readStream });
 
   let count = 0;
 
-  const products = [];
-
-  lineReader.on("line", (line) => {
+  lineReader.on("line", async (line) => {
     if (count >= 100) {
       lineReader.close();
       readStream.close;
@@ -22,8 +20,6 @@ export default async function createDataFromFile(fileName: string) {
     const product = JSON.parse(line);
     const productInfo = {
       code: product.code.replace('"', ""),
-      status: "published",
-      imported_t: dayjs(Date.now())["$d"],
       url: product.url,
       creator: product.creator,
       created_t: product.created_t,
@@ -46,7 +42,9 @@ export default async function createDataFromFile(fileName: string) {
       image_url: product.image_url,
     };
 
-    products.push(productInfo);
+    await db
+      .collection("foods")
+      .updateOne({ code: productInfo.code }, { $set: productInfo });
   });
 
   lineReader.on("close", async () => {
@@ -54,8 +52,12 @@ export default async function createDataFromFile(fileName: string) {
       fileName,
       importDate: dayjs(Date.now())["$d"] as Date,
     };
-    await db.collection("imports").insertOne(importData);
-    await db.collection("foods").insertMany(products);
+    await db
+      .collection("imports")
+      .updateOne(
+        { fileName: importData.fileName },
+        { $set: { importDate: importData.importDate } }
+      );
     unlink(fileName, (error) => {
       if (error) {
         console.log(error);

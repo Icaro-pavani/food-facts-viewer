@@ -33,4 +33,4 @@ export default async function handleErrors(
   return res.sendStatus(500);
 }
 
-type ErrorNames = "conflict" | "unprocessable" | "unauthorized" | "notFound";
+type ErrorNames = "conflict" | "unprocessable" | "notFound";

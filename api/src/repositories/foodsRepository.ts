@@ -38,6 +38,10 @@ async function getFoodsByPage(page: number) {
     .toArray();
 }
 
-const foodsRespository = { getFoodsByPage };
+async function findByCode(code: string) {
+  return db.collection<Food>("foods").findOne({ code });
+}
+
+const foodsRespository = { getFoodsByPage, findByCode };
 
 export default foodsRespository;

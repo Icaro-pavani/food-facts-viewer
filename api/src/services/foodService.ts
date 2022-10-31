@@ -1,3 +1,4 @@
+import { notFoundError } from "../middlewares/handleErrorsMiddleware.js";
 import foodsRespository from "../repositories/foodsRepository.js";
 
 async function obtainFoods(page: number) {
@@ -6,6 +7,16 @@ async function obtainFoods(page: number) {
   return foods;
 }
 
-const foodService = { obtainFoods };
+async function getFoodInfoByCode(code: string) {
+  const food = await foodsRespository.findByCode(code);
+
+  if (!food) {
+    throw notFoundError("Code not found!");
+  }
+
+  return food;
+}
+
+const foodService = { obtainFoods, getFoodInfoByCode };
 
 export default foodService;

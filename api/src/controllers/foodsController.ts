@@ -8,3 +8,11 @@ export async function getFoods(req: Request, res: Response) {
 
   res.status(200).send(foods);
 }
+
+export async function getFoodByCode(req: Request, res: Response) {
+  const code: string = req.params.code;
+
+  const food = await foodService.getFoodInfoByCode(code);
+
+  res.status(200).send(food);
+}
