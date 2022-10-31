@@ -42,6 +42,12 @@ async function findByCode(code: string) {
   return db.collection<Food>("foods").findOne({ code });
 }
 
-const foodsRespository = { getFoodsByPage, findByCode };
+async function deleteByCode(code: string) {
+  return db
+    .collection("foods")
+    .updateOne({ code }, { $set: { status: "trash" } });
+}
+
+const foodsRespository = { getFoodsByPage, findByCode, deleteByCode };
 
 export default foodsRespository;

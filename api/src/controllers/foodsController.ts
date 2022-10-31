@@ -16,3 +16,11 @@ export async function getFoodByCode(req: Request, res: Response) {
 
   res.status(200).send(food);
 }
+
+export async function deleteFoodByCode(req: Request, res: Response) {
+  const code: string = req.params.code;
+
+  await foodService.removeFoodByCode(code);
+
+  res.sendStatus(200);
+}
