@@ -9,15 +9,6 @@ import handleErrors from "./middlewares/handleErrorsMiddleware.js";
 
 const app = express();
 
-const job = new CronJob(
-  "0 0 3 */1 * *",
-  async function () {
-    await updateDatabase();
-  },
-  null,
-  true
-);
-
 app
   .use(cors())
   .use(json())
@@ -29,6 +20,16 @@ export async function initialize(): Promise<Express> {
   try {
     await connectDb("food-facts");
     await updateDatabase(true);
+
+    const job = new CronJob(
+      "0 0 3 */1 * *",
+      async function () {
+        await updateDatabase();
+      },
+      null,
+      true
+    );
+
     return Promise.resolve(app);
   } catch (error) {
     console.log(error);

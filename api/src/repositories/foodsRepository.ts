@@ -1,4 +1,6 @@
+import { number } from "joi";
 import { db } from "../config/database.js";
+import { FoodUpdate } from "../schemas/updateFoodSchema.js";
 
 type Status = "draft" | "trash" | "publihed";
 
@@ -9,7 +11,7 @@ interface Food {
   url: string;
   creator: string;
   created_t: Date;
-  last_modified_t: Date;
+  last_modified_t: string;
   product_name: string;
   quantity: string;
   brands: string;
@@ -43,11 +45,18 @@ async function findByCode(code: string) {
 }
 
 async function deleteByCode(code: string) {
-  return db
+  await db
     .collection("foods")
     .updateOne({ code }, { $set: { status: "trash" } });
 }
+async function update(code: string, foodUpdateData: FoodUpdateData) {
+  await db.collection("foods").updateOne({ code }, { $set: foodUpdateData });
+}
 
-const foodsRespository = { getFoodsByPage, findByCode, deleteByCode };
+export type FoodUpdateData = FoodUpdate & {
+  last_modified_t: number;
+};
+
+const foodsRespository = { getFoodsByPage, findByCode, deleteByCode, update };
 
 export default foodsRespository;

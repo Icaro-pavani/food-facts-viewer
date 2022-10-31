@@ -20,6 +20,7 @@ export default async function createDataToUpdate(fileName: string) {
     const product = JSON.parse(line);
     const productInfo = {
       code: product.code.replace('"', ""),
+      imported_t: dayjs(Date.now())["$d"],
       url: product.url,
       creator: product.creator,
       created_t: product.created_t,

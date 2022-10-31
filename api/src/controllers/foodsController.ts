@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { FoodUpdate } from "../schemas/updateFoodSchema.js";
 import foodService from "../services/foodService.js";
 
 export async function getFoods(req: Request, res: Response) {
@@ -21,6 +22,15 @@ export async function deleteFoodByCode(req: Request, res: Response) {
   const code: string = req.params.code;
 
   await foodService.removeFoodByCode(code);
+
+  res.sendStatus(200);
+}
+
+export async function updateFoodByCode(req: Request, res: Response) {
+  const code: string = req.params.code;
+  const foodUpdateInfo = req.body as FoodUpdate;
+
+  await foodService.updateFoodInfo(code, foodUpdateInfo);
 
   res.sendStatus(200);
 }
