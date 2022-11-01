@@ -17,11 +17,10 @@ export default async function createDataToUpdate(fileName: string) {
     }
     count++;
 
-    type FoodUpdate = Omit<Food, "status">;
-
     const product = JSON.parse(line);
-    const productInfo: FoodUpdate = {
+    const productInfo: Food = {
       code: product.code.replace('"', ""),
+      status: "published",
       imported_t: new Date(),
       url: product.url,
       creator: product.creator,
@@ -45,13 +44,21 @@ export default async function createDataToUpdate(fileName: string) {
       image_url: product.image_url,
     };
 
-    await db
-      .collection("foods")
-      .updateOne({ code: productInfo.code }, { $set: productInfo });
+    const foodRegistered = await db
+      .collection<Food>("foods")
+      .findOne({ code: productInfo.code });
+
+    if (!foodRegistered) {
+      await db.collection("foods").insertOne(productInfo);
+    } else if (foodRegistered.last_modified_t <= productInfo.last_modified_t) {
+      await db
+        .collection("foods")
+        .updateOne({ code: productInfo.code }, { $set: productInfo });
+    }
   });
 
   lineReader.on("error", (error) => {
-    console.log(error);
+    console.log("Data Sync error: ", error);
   });
 
   lineReader.on("close", async () => {

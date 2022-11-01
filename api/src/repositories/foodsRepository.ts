@@ -33,7 +33,7 @@ async function getFoodsByPage(page: number) {
   const itemsPage = 20;
   return db
     .collection<Food[]>("foods")
-    .find()
+    .find({ status: { $ne: "trash" } })
     .skip((page - 1) * 20)
     .limit(itemsPage)
     .toArray();

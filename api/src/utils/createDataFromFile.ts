@@ -50,7 +50,7 @@ export default async function createDataFromFile(fileName: string) {
   });
 
   lineReader.on("error", (error) => {
-    console.log(error);
+    console.log("Data Sync error: ", error);
   });
 
   lineReader.on("close", async () => {
