@@ -1,7 +1,8 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import Header from "../components/Header";
+import api from "../services/api";
 
 export default function FoodFactList() {
   const [products, setProducts] = useState([]);
@@ -17,8 +18,7 @@ export default function FoodFactList() {
 
   useEffect(() => {
     async function getProducts() {
-      const URL = process.env.REACT_APP_API;
-      const productsResult = await axios.get(`${URL}/products?page=${page}`);
+      const productsResult = await api.getProductsByPage(page);
       setProducts(productsResult.data);
     }
 
@@ -27,6 +27,7 @@ export default function FoodFactList() {
 
   return (
     <Container>
+      <Header />
       <ListContainer>
         {products.length > 0
           ? products.map((food) => (
@@ -43,8 +44,13 @@ export default function FoodFactList() {
                   <h3>
                     <span>Nota de Nutrição:</span> {food.nutriscore_grade}
                   </h3>
+                  <h3>
+                    <span>Status:</span> {food.status}
+                  </h3>
                 </InfoContainer>
-                <button>Abrir</button>
+                <button onClick={() => navigate(`/product/${food.code}`)}>
+                  Abrir
+                </button>
               </li>
             ))
           : ""}
