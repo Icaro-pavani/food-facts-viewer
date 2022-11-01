@@ -6,6 +6,7 @@ import api from "../services/api";
 
 export default function FoodFactList() {
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
   let { page } = useParams();
 
   page = parseInt(page);
@@ -23,7 +24,7 @@ export default function FoodFactList() {
     }
 
     getProducts();
-  }, [page]);
+  }, [page, loading]);
 
   return (
     <Container>
@@ -48,9 +49,19 @@ export default function FoodFactList() {
                     <span>Status:</span> {food.status}
                   </h3>
                 </InfoContainer>
-                <button onClick={() => navigate(`/product/${food.code}`)}>
-                  Abrir
-                </button>
+                <ButtonContainer>
+                  <button onClick={() => navigate(`/product/${food.code}`)}>
+                    Abrir
+                  </button>
+                  <button
+                    onClick={async () => {
+                      await api.deleteProductByCode(food.code);
+                      setLoading(!loading);
+                    }}
+                  >
+                    Excluir
+                  </button>
+                </ButtonContainer>
               </li>
             ))
           : ""}
@@ -93,21 +104,6 @@ const ListContainer = styled.ul`
       height: 140px;
       width: 140px;
     }
-
-    button {
-      width: 90px;
-      height: 40px;
-      color: #f2f2f2;
-      background-color: #2273ec;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-
-      &:hover {
-        background-color: #2233ec;
-        cursor: pointer;
-      }
-    }
   }
 `;
 
@@ -125,6 +121,27 @@ const InfoContainer = styled.div`
 
     span {
       font-weight: bold;
+    }
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  button {
+    width: 90px;
+    height: 40px;
+    color: #f2f2f2;
+    background-color: #2273ec;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 15px;
+
+    &:hover {
+      background-color: #2233ec;
+      cursor: pointer;
     }
   }
 `;

@@ -12,6 +12,10 @@ async function getProductByCode(code) {
   return baseAPI.get(`/products/${code}`);
 }
 
-const api = { getProductsByPage, getProductByCode };
+async function deleteProductByCode(code) {
+  await baseAPI.delete(`/products/${code}`);
+}
+
+const api = { getProductsByPage, getProductByCode, deleteProductByCode };
 
 export default api;
