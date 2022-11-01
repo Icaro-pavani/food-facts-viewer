@@ -7,7 +7,7 @@
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- --coverage -i",
     "test:unit": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i --coverage --testPathPattern=tests/unit",
-    "test:int": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i --coverage --testPathPattern=tests/integrations",
+    "test:int": "NODE_OPTIONS=--experimental-vm-modules dotenv -e .env.test jest -- -i --coverage --testPathPattern=tests/integration",
     "dev": "nodemon src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js"

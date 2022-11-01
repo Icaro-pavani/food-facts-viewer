@@ -1,4 +1,3 @@
-import { number } from "joi";
 import { db } from "../config/database.js";
 import { FoodUpdate } from "../schemas/updateFoodSchema.js";
 
