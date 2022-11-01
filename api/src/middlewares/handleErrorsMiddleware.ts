@@ -3,16 +3,11 @@ import { ApplicationError } from "../protocols.js";
 
 const serviceErrorToStatusCode = {
   conflict: 409,
-  unprocessable: 422,
   notFound: 404,
 };
 
 export function conflictError(message: string) {
   return { name: "conflict", message: message || "" };
-}
-
-export function unprocessableError(message: string) {
-  return { name: "unprocessable", message: message || "" };
 }
 
 export function notFoundError(message: string) {
@@ -33,4 +28,4 @@ export default async function handleErrors(
   return res.sendStatus(500);
 }
 
-type ErrorNames = "conflict" | "unprocessable" | "notFound";
+type ErrorNames = "conflict" | "notFound";

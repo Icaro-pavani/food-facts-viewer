@@ -36,6 +36,7 @@ async function updateFoodInfo(code: string, foodUpdateInfo: FoodUpdate) {
     nutriscore_grade,
     nutriscore_score,
     traces,
+    status,
   } = foodUpdateInfo;
 
   if (
@@ -43,7 +44,8 @@ async function updateFoodInfo(code: string, foodUpdateInfo: FoodUpdate) {
     !!ingredients_text ||
     !!nutriscore_grade ||
     !!nutriscore_score ||
-    !!traces
+    !!traces ||
+    !!status
   ) {
     await foodsRespository.update(code, {
       ...foodUpdateInfo,

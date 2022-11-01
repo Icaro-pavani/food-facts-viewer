@@ -6,6 +6,6 @@ COPY . .
 
 EXPOSE 4000
 
-RUN npm i && nom run build
+RUN npm i && npm run build
 
 CMD ["npm", "start"]

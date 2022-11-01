@@ -2,16 +2,16 @@ import { number } from "joi";
 import { db } from "../config/database.js";
 import { FoodUpdate } from "../schemas/updateFoodSchema.js";
 
-type Status = "draft" | "trash" | "publihed";
+export type Status = "draft" | "trash" | "published";
 
-interface Food {
+export interface Food {
   code: string;
   status: Status;
   imported_t: Date;
   url: string;
   creator: string;
-  created_t: Date;
-  last_modified_t: string;
+  created_t: number;
+  last_modified_t: number;
   product_name: string;
   quantity: string;
   brands: string;
