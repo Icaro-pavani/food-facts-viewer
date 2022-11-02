@@ -79,6 +79,12 @@ Desde que tenha o Docker e o docker-compose instalados localmente, a aplicação
 
 ## :rocket: Routes
 
+GET /api-docs
+
+- Rota responsável por trazer a documentação das rotas da API
+- Utilizar no navegar para mostrar a documentação
+- link: [https://food-facts-viewer.herokuapp.com/api-docs](https://food-facts-viewer.herokuapp.com/api-docs)
+
 ```yml
 GET /
     - Rota responsável por trazer as informações da API

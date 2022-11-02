@@ -12,6 +12,10 @@
     {
       "url": "http://localhost:4000/",
       "description": "API de teste"
+    },
+    {
+      "url": "https://food-facts-viewer.herokuapp.com/",
+      "description": "API de produção"
     }
   ],
   "paths": {
