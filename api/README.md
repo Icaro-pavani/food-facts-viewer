@@ -55,6 +55,14 @@ Na primeira inicialização da API conectada à um banco de dados vazio, a liber
 
 Por fim, a API atualiza o banco de dados todos os dias as 3:00. Esse padrão pode ser alterado na função CronJob situada no arquivo `app.ts` .
 
+Em relação aos teste, é necessário criar um arquivo `.env.test` que tem o mesmo formato do arquivo `.env-example` e adicionar a ele a URL do banco de dados para os testes. Após isso é só utilizar o comando:
+
+```yml
+npm run test
+```
+
+para executar os testes vinculados a API.
+
 ---
 
 ## :rocket: Routes
