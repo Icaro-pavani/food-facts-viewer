@@ -184,3 +184,10 @@ DELETE /products/:code
     - headers: {}
     - body: {}
 ```
+
+---
+
+## Deploy
+
+Um deploy da aplicação com um banco de dados utilizando o Mongo Atlas pode ser acessada pelo seguinte link:
+[https://food-facts-viewer.herokuapp.com/](https://food-facts-viewer.herokuapp.com/)

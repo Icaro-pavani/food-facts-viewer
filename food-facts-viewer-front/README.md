@@ -41,3 +41,10 @@ npm run build
 ```
 
 Ele irá criar os arquivos otimizados produção e com os corretos bundles do React na pasta `/build`.
+
+---
+
+## Deploy
+
+Um deploy da aplicação integrado com a api pode ser acessada pelo link:
+[https://food-facts-viewer.vercel.app](https://food-facts-viewer.vercel.app)
