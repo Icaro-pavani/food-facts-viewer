@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "API de manipulação dos dados da Food Facts",
-    "description": "Essa API tem como objetivo obter e expor alguns dados do banco da Food Facts, na qual pode se obter uma listas desses dados e manipular alguns parâmetros",
+    "title": "API de manipulação dos dados da Open Food Facts",
+    "description": "Essa API tem como objetivo obter e expor alguns dados do banco da Open Food Facts, na qual pode se obter uma listas desses dados e manipular alguns parâmetros",
     "contact": {
       "email": "icaro.pavani79@gmail.com"
     },
@@ -18,7 +18,7 @@
     "/products": {
       "get": {
         "summary": "Obter todos os items da Food Facts",
-        "description": "Essa rota será responsável por obter todos os itens da Food Fact persistidos no banco de dados sem ter o status de \"trash\"",
+        "description": "Essa rota será responsável por obter todos os itens da Open Food Fact persistidos no banco de dados sem ter o status de \"trash\"",
         "tags": ["Products"],
         "parameters": [
           {
@@ -48,7 +48,7 @@
     "/products/{code}": {
       "get": {
         "summary": "Obter um produto da Food Facts pelo código",
-        "description": "Essa rota será responsável por obter os dados de um item da Food Fact persistido no banco de dados pelo seu código",
+        "description": "Essa rota será responsável por obter os dados de um item da Open Food Fact persistido no banco de dados pelo seu código",
         "tags": ["Products"],
         "parameters": [
           {
@@ -109,8 +109,8 @@
         }
       },
       "delete": {
-        "summary": "Deletar informações do produto",
-        "description": "Essa rota é responsável por deletar um produto persistido no banco de dados",
+        "summary": "Deletar informações do produto pelo código",
+        "description": "Essa rota é responsável por deletar um produto persistido no banco de dados pelo seu código",
         "tags": ["Products"],
         "parameters": [
           {
@@ -126,6 +126,9 @@
           },
           "404": {
             "description": "Not Found"
+          },
+          "409": {
+            "description": "Product already deleted"
           }
         }
       }

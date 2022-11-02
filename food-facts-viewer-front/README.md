@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Front-end: Food Facts Viewer - NodeJs Challenge 20201030
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## :clipboard: Descrição
 
-## Available Scripts
+O projeto tem como objetivo dar suporte a uma equipe de nutricionistas para que eles possam revisar de maneira rápida a informação nutricional dos alimentos que os usuários publicam pela aplicação móvel do Open Food Facts.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## :computer: Técnologias e Conceitos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- JavaScript
+- Axios
+- Styled-components
+- Create React App
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🏁 Rodando a aplicação
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+O front-end desse projeto foi inicializado com o [Create React App](https://github.com/facebook/create-react-app).
 
-### `npm run build`
+Dentro da pasta desse projeto, inicie pela instalação das dependências pelo comando:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```yml
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Terminado a instalação, crie um arquivo `.env` seguindo o formato fornecido no `.env-example` e utilize o comando:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```yml
+npm start
+```
 
-### `npm run eject`
+que irá inicializar a aplicação em modo de desenvolvimento. Abrindo [http://localhost:3000](http://localhost:3000) em seu navegador, será possível acessar a aplicação.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Para criar a aplicação em formato de produção. Utilize o comando:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```yml
+npm run build
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Ele irá criar os arquivos otimizados produção e com os corretos bundles do React na pasta `/build`.
