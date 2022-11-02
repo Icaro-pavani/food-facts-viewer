@@ -24,7 +24,7 @@ app
 export async function initialize(): Promise<Express> {
   try {
     await connectDb("food-facts");
-    await updateDatabase(true);
+    updateDatabase(true);
 
     const job = new CronJob(
       "0 0 3 */1 * *",

@@ -51,9 +51,11 @@ npm start
 
 inicializando a aplicação.
 
-Na primeira inicialização da API conectada à um banco de dados vazio, a liberação de sua porta para fazer as requisições pode demorar um pouco, pois ela irá popular o banco de dados buscando os produtos no Open Food Facts e enviando ao banco de dados.
+Na primeira inicialização da API conectada à um banco de dados vazio, a api irá popular o banco de dados buscando os produtos no Open Food Facts e enviando ao banco de dados. Dessa forma, pode levar alguns minutos para a api popular completamente o banco de dados.
 
 Por fim, a API atualiza o banco de dados todos os dias as 3:00. Esse padrão pode ser alterado na função CronJob situada no arquivo `app.ts` .
+
+### Testes
 
 Em relação aos teste, é necessário criar um arquivo `.env.test` que tem o mesmo formato do arquivo `.env-example` e adicionar a ele a URL do banco de dados para os testes. Após isso é só utilizar o comando:
 
@@ -62,6 +64,16 @@ npm run test
 ```
 
 para executar os testes vinculados a API.
+
+### Docker
+
+A aplicação pode ser rodada através do Docker também. É necessário criar o arquivo `.env` e após sua criação basta rodar o comando:
+
+```yml
+docker-compose up
+```
+
+Desde que tenha o Docker e o docker-compose instalados localmente, a aplicação será executada automaticamente, seguindo os passos descritos anteriormente dentro do container.
 
 ---
 
