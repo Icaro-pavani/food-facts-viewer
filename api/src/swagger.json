@@ -1,0 +1,280 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de manipulação dos dados da Food Facts",
+    "description": "Essa API tem como objetivo obter e expor alguns dados do banco da Food Facts, na qual pode se obter uma listas desses dados e manipular alguns parâmetros",
+    "contact": {
+      "email": "icaro.pavani79@gmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000/",
+      "description": "API de teste"
+    }
+  ],
+  "paths": {
+    "/products": {
+      "get": {
+        "summary": "Obter todos os items da Food Facts",
+        "description": "Essa rota será responsável por obter todos os itens da Food Fact persistidos no banco de dados sem ter o status de \"trash\"",
+        "tags": ["Products"],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Numero da página de busca",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{code}": {
+      "get": {
+        "summary": "Obter um produto da Food Facts pelo código",
+        "description": "Essa rota será responsável por obter os dados de um item da Food Fact persistido no banco de dados pelo seu código",
+        "tags": ["Products"],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "Dados do Produto pelo código",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "put": {
+        "summary": "Editar informações do produto pelo código",
+        "description": "Essa rota é responsável por poder alterar algumas informações do produto persistido no banco de dados pelo seu código",
+        "tags": ["Products"],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "Dados do Produto pelo código",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProduct"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Wrong Request Body"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar informações do produto",
+        "description": "Essa rota é responsável por deletar um produto persistido no banco de dados",
+        "tags": ["Products"],
+        "parameters": [
+          {
+            "name": "code",
+            "in": "path",
+            "description": "Dados do Produto pelo código",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "summary": "Obter Informações da API",
+        "description": "Essa rota é responsável trazer informações sobre a API",
+        "tags": ["API"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/API"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Product": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "imported_t": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "creator": {
+            "type": "string"
+          },
+          "created_t": {
+            "type": "integer"
+          },
+          "last_modified_t": {
+            "type": "integer"
+          },
+          "product_name": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "string"
+          },
+          "brands": {
+            "type": "string"
+          },
+          "categories": {
+            "type": "string"
+          },
+          "labels": {
+            "type": "string"
+          },
+          "cities": {
+            "type": "string"
+          },
+          "purchase_places": {
+            "type": "string"
+          },
+          "stores": {
+            "type": "string"
+          },
+          "ingredients_text": {
+            "type": "string"
+          },
+          "traces": {
+            "type": "string"
+          },
+          "serving_size": {
+            "type": "string"
+          },
+          "serving_quantity": {
+            "type": "number"
+          },
+          "nutriscore_score": {
+            "type": "integer"
+          },
+          "nutriscore_grade": {
+            "type": "string"
+          },
+          "main_category": {
+            "type": "string"
+          },
+          "image_url": {
+            "type": "string"
+          }
+        }
+      },
+      "UpdateProduct": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "string"
+          },
+          "ingredients_text": {
+            "type": "string"
+          },
+          "traces": {
+            "type": "string"
+          },
+          "nutriscore_grade": {
+            "type": "string"
+          },
+          "nutriscore_score": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["published", "draft"]
+          }
+        }
+      },
+      "API": {
+        "type": "object",
+        "properties": {
+          "databaseConnection": {
+            "type": "string",
+            "description": "Informa o estado da conexão entre a API e o banco de dados"
+          },
+          "CRONTime": {
+            "type": "string",
+            "description": "Informa a data da última vez que o CRON foi executado"
+          },
+          "serverUptime": {
+            "type": "number",
+            "description": "Informa o tempo em que a API está online em segundos"
+          },
+          "memoryUsage": {
+            "type": "string",
+            "description": "Informa o uso de memória que a API está consumindo"
+          }
+        }
+      }
+    }
+  }
+}

@@ -11,10 +11,10 @@ export interface FoodUpdate {
 }
 
 export const updateFoodSchema = Joi.object<FoodUpdate>({
-  categories: Joi.string().allow(null),
-  ingredients_text: Joi.string().allow(null),
-  traces: Joi.string().allow(null),
-  nutriscore_grade: Joi.string().allow(null),
-  nutriscore_score: Joi.string().allow(null),
-  status: Joi.string().valid("draft", "published").allow(null),
+  categories: Joi.string().allow(null, ""),
+  ingredients_text: Joi.string().allow(null, ""),
+  traces: Joi.string().allow(null, ""),
+  nutriscore_grade: Joi.string().allow(null, ""),
+  nutriscore_score: Joi.number().integer().allow(null),
+  status: Joi.string().valid("draft", "published").allow(null, ""),
 });

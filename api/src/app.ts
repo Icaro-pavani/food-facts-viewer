@@ -6,12 +6,17 @@ import router from "./routes/router.js";
 import { CronJob } from "cron";
 import updateDatabase from "./utils/updateDatabase.js";
 import handleErrors from "./middlewares/handleErrorsMiddleware.js";
+import swaggerUi from "swagger-ui-express";
+import { readFileSync } from "fs";
 
 const app = express();
+
+const swaggerDocs = JSON.parse(readFileSync("./src/swagger.json", "utf8"));
 
 app
   .use(cors())
   .use(json())
+  .use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
   .get("/health", (_req, res) => res.send("OK!"))
   .use(router)
   .use(handleErrors);

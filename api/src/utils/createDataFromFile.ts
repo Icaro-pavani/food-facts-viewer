@@ -39,8 +39,12 @@ export default async function createDataFromFile(fileName: string) {
       ingredients_text: product.ingredients_text,
       traces: product.traces,
       serving_size: product.serving_size,
-      serving_quantity: parseFloat(product.serving_quantity),
-      nutriscore_score: parseInt(product.nutriscore_score),
+      serving_quantity: parseFloat(product.serving_quantity)
+        ? parseFloat(product.serving_quantity)
+        : 0,
+      nutriscore_score: parseInt(product.nutriscore_score)
+        ? parseInt(product.nutriscore_score)
+        : 0,
       nutriscore_grade: product.nutriscore_grade,
       main_category: product.main_category,
       image_url: product.image_url,
