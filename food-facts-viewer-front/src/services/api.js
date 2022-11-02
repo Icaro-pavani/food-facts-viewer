@@ -16,6 +16,15 @@ async function deleteProductByCode(code) {
   await baseAPI.delete(`/products/${code}`);
 }
 
-const api = { getProductsByPage, getProductByCode, deleteProductByCode };
+async function updateFoodFact(code, updateData) {
+  await baseAPI.put(`/products/${code}`, updateData);
+}
+
+const api = {
+  getProductsByPage,
+  getProductByCode,
+  deleteProductByCode,
+  updateFoodFact,
+};
 
 export default api;

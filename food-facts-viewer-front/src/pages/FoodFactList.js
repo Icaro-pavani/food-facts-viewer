@@ -85,7 +85,7 @@ const Container = styled.div`
   width: 700px;
   background-color: #fff;
   align-items: center;
-  margin: 0 auto;
+  margin: 50px auto;
   padding-bottom: 10px;
 `;
 

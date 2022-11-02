@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Header from "../components/Header";
 import api from "../services/api";
@@ -7,6 +7,8 @@ import api from "../services/api";
 export default function DetailFact() {
   const { code } = useParams();
   const [food, setFood] = useState({});
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getFoodFact() {
@@ -25,6 +27,9 @@ export default function DetailFact() {
           <h2>{food.product_name}</h2>
           <h3>
             <span>Código:</span> {food.code}
+          </h3>
+          <h3>
+            <span>Status:</span> {food.status}
           </h3>
           <h3>
             <span>Marca:</span> {food.brands}
@@ -66,7 +71,7 @@ export default function DetailFact() {
             <span>Nota de Nutrição:</span> {food.nutriscore_grade}
           </h3>
         </InfoContainer>
-        <button>Editar</button>
+        <button onClick={() => navigate(`/edit/${food.code}`)}>Editar</button>
       </FoodContainer>
     </Container>
   );
